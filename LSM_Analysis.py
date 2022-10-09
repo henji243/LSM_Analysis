@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from bs4 import element
+from functools import cache
 from pprint import pprint
 
 class LSM_Analysis:
@@ -13,11 +14,13 @@ class LSM_Analysis:
         if "アセット" not in self._soup.title.text:
             raise TypeError("LSM only.")
 
+    @cache
     def failed_list(self):
         section = self._soup.select_one("body > section:nth-child(6)")
         failed_aseets = [elem.text for elem in section.find_all("a", attrs={"data-lomtag":"failed"})]
         return failed_aseets
 
+    @cache
     def error_list(self):
         section = self._soup.select_one("body > section:nth-child(6)")
         tag = section.find_all("a", attrs={"data-lomtag":"warning"})
