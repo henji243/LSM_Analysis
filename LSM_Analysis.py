@@ -28,7 +28,9 @@ class LSM_Analysis:
         error_aseets = list()
         warning_aseets = list()
         for i in tag:
-            if self.iserror(i):
+            if len(warning_aseets) >= 1:
+                warning_aseets.append(i.text)
+            elif self.iserror(i):
                 error_aseets.append(i.text)
             else:
                 warning_aseets.append(i.text)
