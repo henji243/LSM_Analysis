@@ -76,7 +76,7 @@ if __name__ == "__main__":
     import time
     from pprint import pprint
 
-    loading = LSM_Analysis(input("PATH>>"))
+    loading = LSM_Analysis(input("PATH>>").replace('"', ""))  # 見にくすぎワロタ
 
     timer = time.perf_counter()
     aseet = loading.warning_list()
